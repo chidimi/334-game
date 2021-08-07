@@ -11,13 +11,17 @@ export default class Game {
     this.scoreRepository = scoreRepository
   }
 
-  public async play() :Promise<void> {
+  public async play() :Promise<Score> {
     const playerName = await this.cli.init()
     await this.cli.start()
     const startTime = Date.now()
     await this.cli.end()
     const endTime = Date.now()
-    this.scoreRepository.create(this.getScore(playerName, startTime, endTime, this.targetTime))
+    return this.getScore(playerName, startTime, endTime, this.targetTime)
+  }
+
+  public saveScore(score :Score) :void {
+    this.scoreRepository.create(score)
   }
 
   private getScore(playerName: string, startTime: number, endTime: number, targetTime: number) :Score {

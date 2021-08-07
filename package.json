@@ -4,7 +4,7 @@
   "description": "stop watch game",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --require ts-node/register --watch-extensions ts \"test/**/*.ts\""
   },
   "author": "",
   "license": "ISC",
@@ -16,10 +16,15 @@
     "typescript": "^4.3.5"
   },
   "devDependencies": {
+    "@types/chai": "^4.2.21",
+    "@types/mocha": "^9.0.0",
     "@types/node": "^16.4.13",
     "@typescript-eslint/eslint-plugin": "^4.29.0",
     "@typescript-eslint/parser": "^4.29.0",
+    "chai": "^4.3.4",
     "eslint": "^7.32.0",
-    "prettier": "^2.3.2"
+    "mocha": "^9.0.3",
+    "prettier": "^2.3.2",
+    "ts-node": "^10.1.0"
   }
 }
