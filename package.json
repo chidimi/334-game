@@ -1,0 +1,20 @@
+{
+  "name": "stop-watch-game-ts",
+  "version": "1.0.0",
+  "description": "stop watch game",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^4.3.5"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.29.0",
+    "@typescript-eslint/parser": "^4.29.0",
+    "eslint": "^7.32.0",
+    "prettier": "^2.3.2"
+  }
+}
