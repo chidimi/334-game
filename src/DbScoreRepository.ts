@@ -8,11 +8,4 @@ export default class DbScoreRepository implements ScoreRepository {
   read(): Score {
     throw new Error("Method not implemented.");
   }
-  update(score: Score): void {
-    throw new Error("Method not implemented.");
-  }
-  delete(score: Score): void {
-    throw new Error("Method not implemented.");
-  }
-
 }

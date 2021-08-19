@@ -1,6 +1,6 @@
 import { expect } from "chai";
-import FileScoreRepository from "../src/FileScoreRepository";
-import Game from "../src/Game";
+import FileScoreRepository from "../FileScoreRepository";
+import Game from "../Game";
 
 describe('simplest test:', () => {
   it('1 + 1 should be 2', () => {
