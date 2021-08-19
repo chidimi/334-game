@@ -1,35 +1,36 @@
 import Cli from "./Cli";
 import ScoreRepository from "./ScoreRepository";
+import ScoreService from "./ScoreService";
 import Score from "./types/Score";
 
 export default class Game {
-  private scoreRepository :ScoreRepository
-  private cli = new Cli()
-  private targetTime = 3.34
+  private static cli = new Cli()
+  private static targetTime = 3.340
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  private constructor() {}
 
-  constructor(scoreRepository :ScoreRepository) {
-    this.scoreRepository = scoreRepository
-  }
+  public static async play() :Promise<void> {
+    try {
+      const playerName = await this.cli.askPlayerName()
+      const repository = await this.cli.askRepository()
+      const scoreService = new ScoreService(repository)
 
-  public async play() :Promise<Score> {
-    const playerName = await this.cli.init()
-    await this.cli.start()
-    const startTime = Date.now()
-    await this.cli.end()
-    const endTime = Date.now()
-    return this.getScore(playerName, startTime, endTime, this.targetTime)
-  }
+      await this.cli.start()
+      const startTime = Date.now()
+      await this.cli.end()
+      const endTime = Date.now()
 
-  public saveScore(score :Score) :void {
-    this.scoreRepository.create(score)
-  }
-
-  private getScore(playerName: string, startTime: number, endTime: number, targetTime: number) :Score {
-    const resultTime :number = (endTime - startTime)
-    return {
-      playerName: playerName,
-      targetTime: targetTime,
-      resultTime: resultTime
+      const score = scoreService.calculateScore(playerName, startTime, endTime, this.targetTime)
+      this.printScore(score)
+      scoreService.saveScore(score)
+    } catch(error) {
+      console.log(error)
     }
+  }
+
+
+  private static printScore(score: Score) {
+    const output = `player name : ${score.playerName}, result time : ${score.resultTime}, diff to 3.34: ${score.diff}`
+    console.log(output)
   }
 }
