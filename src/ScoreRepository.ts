@@ -1,4 +1,4 @@
-import Score from "./types/Score";
+import Score from "./types/ScoreType";
 
 export default interface ScoreRepository {
   save(score :Score) :void;

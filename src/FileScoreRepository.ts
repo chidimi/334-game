@@ -1,6 +1,6 @@
 import { appendFile } from "fs";
 import ScoreRepository from "./ScoreRepository";
-import Score from "./types/Score";
+import Score from "./types/ScoreType";
 import fs from 'fs/promises'
 
 export default class FileScoreRepository implements ScoreRepository {

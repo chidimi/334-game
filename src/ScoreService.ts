@@ -1,7 +1,7 @@
 import DbScoreRepository from "./DbScoreRepository";
 import FileScoreRepository from "./FileScoreRepository";
 import ScoreRepository from "./ScoreRepository";
-import Score from "./types/Score";
+import Score from "./types/ScoreType";
 
 
 export default class ScoreService {
@@ -22,7 +22,7 @@ export default class ScoreService {
 
   public calculateScore(playerName: string, startTime: number, endTime: number, targetTime: number) : Score {
     const resultTime :number = (endTime - startTime) / 1000
-    const diff = resultTime - targetTime
+    const diff :number  = ((endTime - startTime) - targetTime * 1000) / 1000
     return {
       playerName: playerName,
       targetTime: targetTime,

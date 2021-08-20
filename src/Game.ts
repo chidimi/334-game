@@ -1,11 +1,13 @@
 import Cli from "./Cli";
+import ScorePrinter from "./ScorePrinter";
 import ScoreRepository from "./ScoreRepository";
 import ScoreService from "./ScoreService";
-import Score from "./types/Score";
+import Score from "./types/ScoreType";
 
 export default class Game {
   private static cli = new Cli()
   private static targetTime = 3.340
+  private static scorePrinter = new ScorePrinter()
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   private constructor() {}
 
@@ -21,16 +23,10 @@ export default class Game {
       const endTime = Date.now()
 
       const score = scoreService.calculateScore(playerName, startTime, endTime, this.targetTime)
-      this.printScore(score)
+      this.scorePrinter.printScore(score)
       scoreService.saveScore(score)
     } catch(error) {
       console.log(error)
     }
-  }
-
-
-  private static printScore(score: Score) {
-    const output = `player name : ${score.playerName}, result time : ${score.resultTime}, diff to 3.34: ${score.diff}`
-    console.log(output)
   }
 }
