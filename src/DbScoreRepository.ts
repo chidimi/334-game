@@ -5,7 +5,7 @@ export default class DbScoreRepository implements ScoreRepository {
   save(score: Score): void {
     throw new Error("Method not implemented.");
   }
-  read(): Promise<Score[]> {
+  readScoreByName(playerName : string): Promise<Score[]> {
     throw new Error("Method not implemented.");
   }
 }

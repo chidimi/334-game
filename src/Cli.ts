@@ -1,13 +1,22 @@
 import inquirer from "inquirer";
 
 export default class Cli {
+  public async askPurpose() :Promise<string> {
+    const response = await inquirer.prompt({
+      type: 'list',
+      name: 'purpose',
+      message: 'Which do you want?',
+      choices: ['play', 'view score']
+    });
+    return response.purpose
+  }
+
   public async askPlayerName() :Promise<string> {
     const response = await inquirer.prompt({
       type: 'input',
       name: 'playerName',
       message: 'input your name',
     });
-    console.log(`your name is ${response.playerName}`)
     if (response.playerName === '') {
       throw new Error('you must input name')
     }
@@ -18,10 +27,9 @@ export default class Cli {
     const response = await inquirer.prompt({
       type: 'list',
       name: 'repository',
-      message: 'Which repository do you want to save',
+      message: 'Which repository do you want to use',
       choices: ['file', 'db']
     });
-    console.log(`your score is saved to ${response.repository}`)
     if (response.repository === '') {
       throw new Error('you must select repository')
     }

@@ -5,28 +5,44 @@ import ScoreService from "./ScoreService";
 import Score from "./types/ScoreType";
 
 export default class Game {
-  private static cli = new Cli()
-  private static targetTime = 3.340
-  private static scorePrinter = new ScorePrinter()
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  private constructor() {}
+  public purpose : string
 
-  public static async play() :Promise<void> {
-    try {
-      const playerName = await this.cli.askPlayerName()
-      const repository = await this.cli.askRepository()
-      const scoreService = new ScoreService(repository)
+  private cli = new Cli()
+  private targetTime = 3.340
+  private scorePrinter = new ScorePrinter()
+  private playerName : string
+  private scoreService
 
-      await this.cli.start()
-      const startTime = Date.now()
-      await this.cli.end()
-      const endTime = Date.now()
+  private constructor(purpose : string, playerName : string ,repository : string) {
+    this.purpose = purpose
+    this.playerName = playerName
+    this.scoreService = new ScoreService(repository)
+  }
 
-      const score = scoreService.calculateScore(playerName, startTime, endTime, this.targetTime)
+  public static async init() :Promise<Game> {
+    const cli = new Cli()
+    const purpose = await cli.askPurpose()
+    const playerName = await cli.askPlayerName()
+    const repository = await cli.askRepository()
+    return new Game(purpose, playerName, repository)
+  }
+
+  public async play() : Promise<void> {
+    await this.cli.start()
+    const startTime = Date.now()
+    await this.cli.end()
+    const endTime = Date.now()
+
+    const score = this.scoreService.calculateScore(this.playerName, startTime, endTime, this.targetTime)
+    this.scorePrinter.printScore(score)
+    this.scoreService.saveScore(score)
+  }
+
+  public async viewScore() : Promise<void> {
+    const scores = await this.scoreService.showScore(this.playerName)
+    scores.forEach(score => {
       this.scorePrinter.printScore(score)
-      scoreService.saveScore(score)
-    } catch(error) {
-      console.log(error)
-    }
+    })
   }
 }
+

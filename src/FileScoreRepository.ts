@@ -8,35 +8,33 @@ export default class FileScoreRepository implements ScoreRepository {
 
   async save(score :Score): Promise<void> {
     try {
-      const newScoreJson = JSON.stringify(score)
       const jsonData = await (await fs.readFile(this.file_path)).toString()
       if (jsonData === '') {
         const json = {
           results: [
-            newScoreJson
+            score
           ]
         }
-        fs.writeFile(this.file_path, JSON.stringify(json))
+        fs.appendFile(this.file_path, JSON.stringify(json))
       } else {
         const currentData = JSON.parse(jsonData)
-        currentData.results.push(newScoreJson)
+        currentData.results.push(score)
         fs.writeFile(this.file_path, JSON.stringify(currentData))
       }
     } catch(error) {
-      throw new Error('failed to save')
+      console.error('failed to save')
     }
   }
 
-  async read(): Promise<Score[]> {
-    try {
-      const jsonData = await (await fs.readFile(this.file_path)).toString()
-      if (jsonData === '') {
-        throw new Error('no data found!')
-      }
-      const currentData = JSON.parse(jsonData)
-      return currentData.results
-    } catch(error) {
-      throw new Error('failed to load file')
+  async readScoreByName(playerName : string): Promise<Score[]> {
+    const jsonData = await (await fs.readFile(this.file_path)).toString()
+    if (jsonData === '') {
+      console.error('no data found!')
     }
+    const currentData = JSON.parse(jsonData)
+    const playerScore = currentData.results.filter((score : Score) => {
+      return score.playerName === playerName
+    })
+    return playerScore
   }
 }
