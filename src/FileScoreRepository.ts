@@ -6,10 +6,10 @@ export default class FileScoreRepository implements ScoreRepository {
   readonly file_path = '334_score_file.json'
 
   async save(score :Score): Promise<void> {
-    if (!this.isFileExists(this.file_path)) {
-      fs.mkdir(this.file_path)
+    if (!await this.isFileExists(this.file_path)) {
+      await fs.appendFile(this.file_path, "")
     }
-    const jsonData = await (await fs.readFile(this.file_path)).toString()
+    const jsonData = (await fs.readFile(this.file_path)).toString()
     if (jsonData === '') {
       const json = {
         results: [
@@ -25,14 +25,20 @@ export default class FileScoreRepository implements ScoreRepository {
   }
 
   async readScoreByName(playerName : string): Promise<Score[]> {
-    const jsonData = await (await fs.readFile(this.file_path)).toString()
+    if (!await this.isFileExists(this.file_path)) {
+      throw new Error('no score found')
+    }
+    const jsonData = (await fs.readFile(this.file_path)).toString()
     if (jsonData === '') {
-      console.error('no data found!')
+      throw new Error('no score found')
     }
     const currentData = JSON.parse(jsonData)
     const playerScore = currentData.results.filter((score : Score) => {
       return score.playerName === playerName
     })
+    if (playerScore.length === 0) {
+      throw new Error('no score found')
+    }
     return playerScore
   }
 

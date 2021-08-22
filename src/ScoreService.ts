@@ -36,6 +36,11 @@ export default class ScoreService {
   }
 
   public showScore(playerName: string) :Promise<Score[]> {
-    return this.scoreRepository.readScoreByName(playerName);
+    // eslint-disable-next-line no-useless-catch
+    try {
+      return this.scoreRepository.readScoreByName(playerName);
+    } catch (err) {
+      throw err
+    }
   }
 }

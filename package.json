@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "test": "mocha --require ts-node/register --watch-extensions ts \"test/**/*.ts\"",
-    "build": "tsc src/*.ts --sourceMap --outDir dist"
+    "build": "tsc src/index.ts --sourceMap --esModuleInterop --outDir dist"
   },
   "author": "",
   "license": "ISC",

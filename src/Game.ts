@@ -37,10 +37,14 @@ export default class Game {
   }
 
   public async viewScore() : Promise<void> {
-    const scores = await this.scoreService.showScore(this.playerName)
-    scores.forEach(score => {
-      this.scorePrinter.printScore(score)
-    })
+    try {
+      const scores = await this.scoreService.showScore(this.playerName)
+      scores.forEach(score => {
+        this.scorePrinter.printScore(score)
+      })
+    } catch(err) {
+      console.error(err)
+    }
   }
 }
 
