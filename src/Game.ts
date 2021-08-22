@@ -43,7 +43,7 @@ export default class Game {
         this.scorePrinter.printScore(score)
       })
     } catch(err) {
-      console.error(err)
+      console.error(err.message)
     }
   }
 }

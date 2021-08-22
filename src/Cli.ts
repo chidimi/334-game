@@ -28,7 +28,7 @@ export default class Cli {
       type: 'list',
       name: 'repository',
       message: 'Which repository do you want to use',
-      choices: ['file', 'db']
+      choices: ['file']
     });
     if (response.repository === '') {
       throw new Error('you must select repository')
