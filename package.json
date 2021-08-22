@@ -1,11 +1,13 @@
 {
-  "name": "stop-watch-game-ts",
+  "name": "334-stopwatch-game",
   "version": "1.0.0",
   "description": "stop watch game",
   "main": "index.ts",
   "scripts": {
     "test": "mocha --require ts-node/register --watch-extensions ts \"test/**/*.ts\"",
-    "build": "tsc src/index.ts --sourceMap --esModuleInterop --outDir dist"
+    "prepare": "tsc",
+    "build": "tsc",
+    "start": "node ./dist/index.js"
   },
   "author": "",
   "license": "ISC",
