@@ -4,7 +4,8 @@
   "description": "stop watch game",
   "main": "index.ts",
   "scripts": {
-    "test": "mocha --require ts-node/register --watch-extensions ts \"test/**/*.ts\""
+    "test": "mocha --require ts-node/register --watch-extensions ts \"test/**/*.ts\"",
+    "build": "tsc src/*.ts --sourceMap --outDir dist"
   },
   "author": "",
   "license": "ISC",

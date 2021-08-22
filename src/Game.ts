@@ -1,8 +1,6 @@
 import Cli from "./Cli";
 import ScorePrinter from "./ScorePrinter";
-import ScoreRepository from "./ScoreRepository";
 import ScoreService from "./ScoreService";
-import Score from "./types/ScoreType";
 
 export default class Game {
   public purpose : string

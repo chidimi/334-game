@@ -32,11 +32,7 @@ export default class ScoreService {
   }
 
   public saveScore(score: Score) :void {
-    try{
-      this.scoreRepository.save(score)
-    } catch(err) {
-      throw console.error(err)
-    }
+    this.scoreRepository.save(score)
   }
 
   public showScore(playerName: string) :Promise<Score[]> {
