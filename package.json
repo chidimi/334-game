@@ -6,13 +6,17 @@
   "bin": {
     "334-game": "./bin/main.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chidimi/334-game"
+  },
   "scripts": {
     "test": "mocha --require ts-node/register --watch-extensions ts \"test/**/*.ts\"",
     "prepare": "tsc",
     "build": "tsc",
     "start": "node ./dist/index.js"
   },
-  "author": "",
+  "author": "Daichi Imai <daichi.imai@hotmail.com> (https://github.com/chidimi)",
   "license": "ISC",
   "dependencies": {
     "@types/inquirer": "^7.3.3",
