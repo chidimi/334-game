@@ -1,8 +1,0 @@
-.eslintrc.json
-.prettierrc
-tsconfig.json
-test/
-.vscode/
-node_modules/
-src/
-334_score_file.json
