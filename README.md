@@ -6,3 +6,5 @@ a game inspired by [\(@334\_Ranker\) / Twitter](https://twitter.com/334_Ranker?r
 caution: this command generate json file to your current directory
 
 ```npx 334-stopwatch-game```
+
+https://www.npmjs.com/package/334-stopwatch-game
