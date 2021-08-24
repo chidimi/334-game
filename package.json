@@ -2,7 +2,10 @@
   "name": "334-stopwatch-game",
   "version": "1.1.0",
   "description": "stop watch game",
-  "main": "index.ts",
+  "main": "./dist/index.js",
+  "bin": {
+    "334-game" : "./bin/main.js"
+  },
   "scripts": {
     "test": "mocha --require ts-node/register --watch-extensions ts \"test/**/*.ts\"",
     "prepare": "tsc",
