@@ -3,7 +3,7 @@ a game inspired by [\(@334\_Ranker\) / Twitter](https://twitter.com/334_Ranker?r
 
 ## usage
 
-caution: this command generate json file to your current directory
+caution: this command generates json file to your current directory
 
 ```npx 334-stopwatch-game```
 

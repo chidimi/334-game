@@ -10,6 +10,10 @@
     "type": "git",
     "url": "https://github.com/chidimi/334-game"
   },
+  "keywords": [
+    "game",
+    "cli"
+  ],
   "scripts": {
     "test": "mocha --require ts-node/register --watch-extensions ts \"test/**/*.ts\"",
     "prepare": "tsc",
